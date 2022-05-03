@@ -1,0 +1,6 @@
+framework module Pods_Eliassen_Demo {
+  umbrella header "Pods-Eliassen Demo-umbrella.h"
+
+  export *
+  module * { export * }
+}
