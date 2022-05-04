@@ -6,9 +6,5 @@ target 'Eliassen Demo' do
   use_frameworks!
 
   # Pods for Eliassen Demo
-  pod 'Firebase/Firestore'
-  pod 'Firebase'
-  pod 'FirebaseAuth'
-  pod 'GoogleSignIn'
 
 end
