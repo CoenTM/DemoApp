@@ -10,10 +10,6 @@ import SwiftUI
 struct ApiListView: View {
 	@StateObject var viewModel = ViewModel()
 	
-	@State private var alertTitle = ""
-	@State private var alertMessage = ""
-	@State private var showingAlert = false
-	
     var body: some View {
 		List {
 			ForEach(viewModel.categories, id: \.self) { category in
@@ -31,35 +27,22 @@ struct ApiListView: View {
 		}
 		.listStyle(.sidebar)
 		.onAppear {
-			if !viewModel.listLoaded { loadApiList() }
+            if !viewModel.listLoaded { viewModel.fetchApiList() }
 		}
 		.toolbar {
-			ToolbarItem {
+            ToolbarItem(placement: .navigationBarTrailing) {
 				Button("Reload") {
-					loadApiList()
+                    viewModel.fetchApiList()
 				}
 			}
 		}
-		.alert(alertTitle, isPresented: $showingAlert) {
+        .alert(viewModel.alertTitle, isPresented: $viewModel.showErrorAlert) {
 			Button("OK") {}
 		} message: {
-			Text(alertMessage)
+            Text(viewModel.alertMessage)
 		}
 		.navigationTitle("Api List")
     }
-	
-	private func loadApiList() {
-		viewModel.fetchApiList { result in
-			switch result {
-				case .success(let message):
-					print(message)
-				case .failure(let error):
-					alertTitle = "Error!"
-					alertMessage = "\(error.localizedDescription). Please tap Reload on the toolbar to try it again."
-					showingAlert = true
-			}
-		}
-	}
 	
 	struct Row: View {
 		let item: ApiItem
