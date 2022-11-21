@@ -11,27 +11,34 @@ extension ApiListView {
 	class ViewModel: ObservableObject {
         @Published var apiList = [ApiItem]()
 		var listLoaded = false
-		var categories = [String]()
+		private (set) var categories = [String]()
 
         private let repo = PublicAPIRepository(networkClient: GlobalNetworkClient())
 
         private (set) var alertTitle = ""
         private (set) var alertMessage = ""
         @Published var showErrorAlert = false
+
+        @Published var showLoadingView = false
 		
 		func fetchApiList() {
+            showLoadingView = true
             Task {
                 do {
                     let publicApis = try await repo.fetchPublicApis()
                     getUniqueCategories(from: publicApis)
                     await MainActor.run {
                         apiList = publicApis
+                        showLoadingView = false
                     }
                 } catch {
                     if let error = error as? MyError, error.displayError == true {
                         alertTitle = error.alertTitle
                         alertMessage = error.alertMessage
-                        showErrorAlert = true
+                        await MainActor.run {
+                            showErrorAlert = true
+                            showLoadingView = false
+                        }
                     }
                 }
             }

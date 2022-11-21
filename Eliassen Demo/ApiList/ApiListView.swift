@@ -11,21 +11,32 @@ struct ApiListView: View {
 	@StateObject var viewModel = ViewModel()
 	
     var body: some View {
-		List {
-			ForEach(viewModel.categories, id: \.self) { category in
-				let apis = viewModel.apiList.filter { $0.category == category }
-				Section(category) {
-					ForEach(apis, id: \.self) { apiItem in
-						NavigationLink {
-							ApiDetailView(apiItem: apiItem)
-						} label: {
-							Row(item: apiItem)
-						}
-					}
-				}
-			}
-		}
-		.listStyle(.sidebar)
+        ZStack {
+            List {
+                ForEach(viewModel.categories, id: \.self) { category in
+                    let apis = viewModel.apiList.filter { $0.category == category }
+                    Section(category) {
+                        ForEach(apis, id: \.self) { apiItem in
+                            NavigationLink {
+                                ApiDetailView(apiItem: apiItem)
+                            } label: {
+                                Row(item: apiItem)
+                            }
+                        }
+                    }
+                }
+            }
+            .listStyle(.sidebar)
+
+            if viewModel.showLoadingView {
+                Color.black
+                    .ignoresSafeArea()
+                    .opacity(0.7)
+                ProgressView()
+                    .tint(Color.white)
+                    .scaleEffect(2)
+            }
+        }
 		.onAppear {
             if !viewModel.listLoaded { viewModel.fetchApiList() }
 		}

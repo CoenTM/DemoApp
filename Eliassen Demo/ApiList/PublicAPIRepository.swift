@@ -16,7 +16,7 @@ class PublicAPIRepository {
 
     public func fetchPublicApis() async throws -> [ApiItem] {
         let config = RequestConfiguration.fetchPublicApis
-        let response: ApiResponse = try await networkClient.jsonTask(with: config)
+        let response: Response = try await networkClient.jsonTask(with: config)
         return response.entries
     }
 }
@@ -41,9 +41,11 @@ extension PublicAPIRepository {
     }
 }
 
-struct ApiResponse: Codable {
-    var count: Int
-    var entries: [ApiItem]
+extension PublicAPIRepository {
+    struct Response: Codable {
+        var count: Int
+        var entries: [ApiItem]
+    }
 }
 
 struct ApiItem: Codable, Hashable {
