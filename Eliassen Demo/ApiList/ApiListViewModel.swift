@@ -11,12 +11,11 @@ extension ApiListView {
 	class ViewModel: ObservableObject {
         @Published var apiList = [ApiItem]()
 		var listLoaded = false
-		private (set) var categories = [String]()
+		private (set) var categories = [APICategory]()
 
         private let repo = PublicAPIRepository(networkClient: GlobalNetworkClient())
 
-        private (set) var alertTitle = ""
-        private (set) var alertMessage = ""
+        private (set) var alertDataSource: AlertDataSource = AlertDataSource(title: "", message: "", alertItems: [])
         @Published var showErrorAlert = false
 
         @Published var showLoadingView = false
@@ -26,35 +25,36 @@ extension ApiListView {
             Task {
                 do {
                     let publicApis = try await repo.fetchPublicApis()
-                    getUniqueCategories(from: publicApis)
+                    getCategories(from: publicApis)
                     await MainActor.run {
                         apiList = publicApis
-                        showLoadingView = false
                     }
                 } catch {
                     if let error = error as? MyError, error.displayError == true {
-                        alertTitle = error.alertTitle
-                        alertMessage = error.alertMessage
+                        alertDataSource = AlertDataSource(title: error.alertTitle, message: error.alertMessage, alertItems: [AlertItem(id: UUID().uuidString, title: "OK", role: .cancel)])
                         await MainActor.run {
                             showErrorAlert = true
-                            showLoadingView = false
                         }
                     }
+                }
+                await MainActor.run {
+                    showLoadingView = false
                 }
             }
 		}
 		
-		func getUniqueCategories(from apiItems: [ApiItem]) {
-			var categorySet = Set<String>()
+		private func getCategories(from apiItems: [ApiItem]) {
+			var categories = [APICategory]()
 			
 			for apiItem in apiItems {
-				if !categorySet.contains(apiItem.category) {
-					categorySet.insert(apiItem.category)
-				}
+                if let appendAt = categories.firstIndex(where: { $0.title == apiItem.category }) {
+                    categories[appendAt].apiList.append(apiItem)
+                } else {
+                    categories.append(APICategory(id: UUID().uuidString, title: apiItem.category, apiList: []))
+                }
 			}
 			
-			categories = [String](categorySet)
-			categories.sort()
+            self.categories = categories.sorted { $0.title < $1.title }
 		}
 	}
 }

@@ -48,7 +48,8 @@ extension PublicAPIRepository {
     }
 }
 
-struct ApiItem: Codable, Hashable {
+struct ApiItem: Codable, Hashable, Identifiable {
+    var id: String = UUID().uuidString
     var title: String
     var description: String
     var authType: String

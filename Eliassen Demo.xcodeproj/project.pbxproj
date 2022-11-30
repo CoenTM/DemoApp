@@ -23,6 +23,8 @@
 		D0957B0C292B3184000686A9 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0957B0B292B3184000686A9 /* HTTPMethod.swift */; };
 		D0957B0E292B342D000686A9 /* CommonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0957B0D292B342D000686A9 /* CommonError.swift */; };
 		D0957B10292B3C1C000686A9 /* MyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0957B0F292B3C1C000686A9 /* MyError.swift */; };
+		D0957B12292C828D000686A9 /* APICategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0957B11292C828D000686A9 /* APICategory.swift */; };
+		D0957B14292C8652000686A9 /* AlertDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0957B13292C8652000686A9 /* AlertDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		D0957B0B292B3184000686A9 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		D0957B0D292B342D000686A9 /* CommonError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonError.swift; sourceTree = "<group>"; };
 		D0957B0F292B3C1C000686A9 /* MyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyError.swift; sourceTree = "<group>"; };
+		D0957B11292C828D000686A9 /* APICategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICategory.swift; sourceTree = "<group>"; };
+		D0957B13292C8652000686A9 /* AlertDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDataSource.swift; sourceTree = "<group>"; };
 		D7F793598025F1C8A5C23D85 /* Pods-Eliassen Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eliassen Demo.debug.xcconfig"; path = "Target Support Files/Pods-Eliassen Demo/Pods-Eliassen Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		DAA95E62FB9C4462F21141E0 /* Pods-Eliassen Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eliassen Demo.release.xcconfig"; path = "Target Support Files/Pods-Eliassen Demo/Pods-Eliassen Demo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,6 +93,7 @@
 				3E4663872821AF12007106EA /* Preview Content */,
 				D0957B0D292B342D000686A9 /* CommonError.swift */,
 				D0957B0F292B3C1C000686A9 /* MyError.swift */,
+				D0957B13292C8652000686A9 /* AlertDataSource.swift */,
 			);
 			path = "Eliassen Demo";
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 				3E4663962821AFAE007106EA /* ApiListViewModel.swift */,
 				3E4663912821AF2E007106EA /* ApiListView.swift */,
 				D0957B07292B2E40000686A9 /* PublicAPIRepository.swift */,
+				D0957B11292C828D000686A9 /* APICategory.swift */,
 			);
 			path = ApiList;
 			sourceTree = "<group>";
@@ -249,6 +255,7 @@
 				3E4663992821B3C0007106EA /* ApiDetailView.swift in Sources */,
 				D0957B0E292B342D000686A9 /* CommonError.swift in Sources */,
 				D0957B08292B2E40000686A9 /* PublicAPIRepository.swift in Sources */,
+				D0957B14292C8652000686A9 /* AlertDataSource.swift in Sources */,
 				3E4663822821AF11007106EA /* Eliassen_DemoApp.swift in Sources */,
 				3E46639C2821BF65007106EA /* TappableTextView.swift in Sources */,
 				D0957B06292B2DE0000686A9 /* NetworkClient.swift in Sources */,
@@ -257,6 +264,7 @@
 				3E4663A22821DCCF007106EA /* SignInView.swift in Sources */,
 				D0957B10292B3C1C000686A9 /* MyError.swift in Sources */,
 				3E4663922821AF2E007106EA /* ApiListView.swift in Sources */,
+				D0957B12292C828D000686A9 /* APICategory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

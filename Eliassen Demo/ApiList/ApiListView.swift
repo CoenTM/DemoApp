@@ -13,10 +13,9 @@ struct ApiListView: View {
     var body: some View {
         ZStack {
             List {
-                ForEach(viewModel.categories, id: \.self) { category in
-                    let apis = viewModel.apiList.filter { $0.category == category }
-                    Section(category) {
-                        ForEach(apis, id: \.self) { apiItem in
+                ForEach(viewModel.categories) { category in
+                    Section(category.title) {
+                        ForEach(category.apiList) { apiItem in
                             NavigationLink {
                                 ApiDetailView(apiItem: apiItem)
                             } label: {
@@ -47,11 +46,7 @@ struct ApiListView: View {
 				}
 			}
 		}
-        .alert(viewModel.alertTitle, isPresented: $viewModel.showErrorAlert) {
-			Button("OK") {}
-		} message: {
-            Text(viewModel.alertMessage)
-		}
+        .alert(alertDataSource: viewModel.alertDataSource, isPresented: $viewModel.showErrorAlert)
 		.navigationTitle("Api List")
     }
 	
@@ -59,11 +54,11 @@ struct ApiListView: View {
 		let item: ApiItem
 		
 		var body: some View {
-			VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 0) {
 				Text(item.title)
 					.font(.headline)
 					.bold()
-					.padding(.bottom, 5)
+					.padding(.bottom, 8)
 				
 				Text(item.description)
 					.multilineTextAlignment(.leading)
