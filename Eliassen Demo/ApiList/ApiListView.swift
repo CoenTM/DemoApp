@@ -9,23 +9,48 @@ import SwiftUI
 
 struct ApiListView: View {
 	@StateObject var viewModel = ViewModel()
+
+    init() {
+        UITableView.appearance().separatorStyle = .none
+        UITableView.appearance().backgroundColor = UIColor.clear
+    }
 	
     var body: some View {
         ZStack {
-            List {
-                ForEach(viewModel.categories) { category in
-                    Section(category.title) {
-                        ForEach(category.apiList) { apiItem in
-                            NavigationLink {
-                                ApiDetailView(apiItem: apiItem)
-                            } label: {
-                                Row(item: apiItem)
+            HStack(spacing: 0) {
+                LazyHGrid(rows: viewModel.uniqueFirstLetters.map { _ in GridItem(.flexible()) }) {
+                    ForEach(viewModel.uniqueFirstLetters, id: \.self) { firstLetter in
+                        Text(firstLetter)
+                            .foregroundColor(.pink)
+                            .onTapGesture {
+                                viewModel.jumpToSection(withHeader: firstLetter)
                             }
+                    }
+                }
+                .padding(.leading, 8)
+                .background(Color.listBackGroundColor)
+
+                ScrollViewReader { proxy in
+                    List {
+                        ForEach(viewModel.categories) { category in
+                            Section(category.title) {
+                                ForEach(category.apiList) { apiItem in
+                                    NavigationLink {
+                                        ApiDetailView(apiItem: apiItem)
+                                    } label: {
+                                        Row(item: apiItem)
+                                    }
+                                }
+                            }
+                            .id(category.id)
                         }
+                    }
+                    .listStyle(.sidebar)
+                    .onChange(of: viewModel.selectedSection) { newValue in
+                        proxy.scrollTo(newValue, anchor: .top)
                     }
                 }
             }
-            .listStyle(.sidebar)
 
             if viewModel.showLoadingView {
                 Color.black
@@ -39,15 +64,9 @@ struct ApiListView: View {
 		.onAppear {
             if !viewModel.listLoaded { viewModel.fetchApiList() }
 		}
-		.toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-				Button("Reload") {
-                    viewModel.fetchApiList()
-				}
-			}
-		}
         .alert(alertDataSource: viewModel.alertDataSource, isPresented: $viewModel.showErrorAlert)
 		.navigationTitle("Api List")
+        .navigationBarTitleDisplayMode(.inline)
     }
 	
 	struct Row: View {
