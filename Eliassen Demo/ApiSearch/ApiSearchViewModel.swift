@@ -15,6 +15,7 @@ extension ApiSearchView {
             }
         }
         @Published var searchSuggestions: [String] = []
+        @Published var isSearchFieldFocused = false
 
         private var searchResultCache: [String: [String]] = [:]
 

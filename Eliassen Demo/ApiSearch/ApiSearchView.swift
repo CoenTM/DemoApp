@@ -9,20 +9,32 @@ import SwiftUI
 
 struct ApiSearchView: View {
     @StateObject var viewModel = ViewModel()
+    @FocusState private var isSearchFieldFocused: Bool
 
     var body: some View {
         VStack {
             HStack {
-                Image(systemName: "magnifyingglass")
-                    .foregroundColor(Color(.systemGray3))
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(Color(.systemGray3))
 
-                TextField("Search", text: $viewModel.searchText)
-                    .autocorrectionDisabled(true)
+                    TextField("Search", text: $viewModel.searchText)
+                        .autocorrectionDisabled(true)
+                        .focused($isSearchFieldFocused)
+                }
+                .padding(4)
+                .background(Color(.systemGray6))
+                .cornerRadius(10)
+
+                if isSearchFieldFocused {
+                    Text("Cancel")
+                        .foregroundColor(Color(.systemBlue))
+                        .onTapGesture {
+                            isSearchFieldFocused = false
+                        }
+                }
             }
             .font(.title3)
-            .padding(4)
-            .background(Color(.systemGray6))
-            .cornerRadius(10)
 
             List {
                 ForEach(viewModel.searchSuggestions, id: \.self) {
