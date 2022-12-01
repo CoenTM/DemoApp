@@ -65,8 +65,6 @@ struct ApiListView: View {
             if !viewModel.listLoaded { viewModel.fetchApiList() }
 		}
         .alert(alertDataSource: viewModel.alertDataSource, isPresented: $viewModel.showErrorAlert)
-		.navigationTitle("Api List")
-        .navigationBarTitleDisplayMode(.inline)
     }
 	
 	struct Row: View {

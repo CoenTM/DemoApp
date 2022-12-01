@@ -17,6 +17,8 @@
 		3E46639C2821BF65007106EA /* TappableTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E46639B2821BF65007106EA /* TappableTextView.swift */; };
 		3E4663A22821DCCF007106EA /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4663A12821DCCF007106EA /* SignInView.swift */; };
 		A20E04080266E140A8606A73 /* Pods_Eliassen_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B47D54DD37FEAD356E0810 /* Pods_Eliassen_Demo.framework */; };
+		D03808EA293865FB00F57450 /* ApiSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03808E9293865FB00F57450 /* ApiSearchView.swift */; };
+		D03808EC293878E100F57450 /* ApiSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03808EB293878E100F57450 /* ApiSearchViewModel.swift */; };
 		D07023802937171B00C1E08F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D070237F2937171B00C1E08F /* String+Extension.swift */; };
 		D0702382293720B900C1E08F /* Color+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0702381293720B900C1E08F /* Color+CustomColors.swift */; };
 		D0957B06292B2DE0000686A9 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0957B05292B2DE0000686A9 /* NetworkClient.swift */; };
@@ -41,6 +43,8 @@
 		3E46639B2821BF65007106EA /* TappableTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableTextView.swift; sourceTree = "<group>"; };
 		3E4663A12821DCCF007106EA /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		74B47D54DD37FEAD356E0810 /* Pods_Eliassen_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eliassen_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D03808E9293865FB00F57450 /* ApiSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiSearchView.swift; sourceTree = "<group>"; };
+		D03808EB293878E100F57450 /* ApiSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiSearchViewModel.swift; sourceTree = "<group>"; };
 		D070237F2937171B00C1E08F /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		D0702381293720B900C1E08F /* Color+CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+CustomColors.swift"; sourceTree = "<group>"; };
 		D0957B05292B2DE0000686A9 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
@@ -88,6 +92,7 @@
 		3E4663802821AF11007106EA /* Eliassen Demo */ = {
 			isa = PBXGroup;
 			children = (
+				D03808E8293865F200F57450 /* ApiSearch */,
 				D070237E2937171400C1E08F /* Util */,
 				D0957B04292B2DD7000686A9 /* Network */,
 				D0957B03292B2D54000686A9 /* ApiList */,
@@ -127,6 +132,15 @@
 				74B47D54DD37FEAD356E0810 /* Pods_Eliassen_Demo.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D03808E8293865F200F57450 /* ApiSearch */ = {
+			isa = PBXGroup;
+			children = (
+				D03808E9293865FB00F57450 /* ApiSearchView.swift */,
+				D03808EB293878E100F57450 /* ApiSearchViewModel.swift */,
+			);
+			path = ApiSearch;
 			sourceTree = "<group>";
 		};
 		D070237E2937171400C1E08F /* Util */ = {
@@ -264,7 +278,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D03808EC293878E100F57450 /* ApiSearchViewModel.swift in Sources */,
 				D07023802937171B00C1E08F /* String+Extension.swift in Sources */,
+				D03808EA293865FB00F57450 /* ApiSearchView.swift in Sources */,
 				D0957B0A292B2EBC000686A9 /* NetworkRequestConfiguration.swift in Sources */,
 				3E4663842821AF11007106EA /* ContentView.swift in Sources */,
 				3E4663992821B3C0007106EA /* ApiDetailView.swift in Sources */,
