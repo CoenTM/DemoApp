@@ -17,7 +17,7 @@ extension ApiListView {
 
         private let repo = PublicAPIRepository(networkClient: GlobalNetworkClient())
 
-        private (set) var alertDataSource = AlertDataSource(title: "", message: "", alertItems: [])
+        private (set) var alertDataSource = AlertDataSource()
         @Published var showErrorAlert = false
 
         @Published var showLoadingView = false
@@ -28,14 +28,15 @@ extension ApiListView {
                 do {
                     let publicApis = try await repo.fetchPublicApis()
                     let categories = getCategories(from: publicApis)
-                    print(uniqueFirstLetters)
                     await MainActor.run {
                         self.categories = categories
                         self.listLoaded = true
                     }
                 } catch {
                     if let error = error as? MyError, error.displayError == true {
-                        alertDataSource = AlertDataSource(title: error.alertTitle, message: error.alertMessage, alertItems: [AlertItem(id: UUID().uuidString, title: "OK", role: .cancel)])
+                        var alertDataSource = AlertDataSource(error: error)
+                        alertDataSource.alertItems = [AlertItem(id: UUID().uuidString, title: "OK", role: .cancel)]
+                        self.alertDataSource = alertDataSource
                         await MainActor.run {
                             showErrorAlert = true
                         }

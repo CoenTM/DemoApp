@@ -9,9 +9,21 @@ import Foundation
 import SwiftUI
 
 struct AlertDataSource {
-    let title: String
-    let message: String
-    let alertItems: [AlertItem]
+    var title: String
+    var message: String
+    var alertItems: [AlertItem]
+
+    init(title: String = "", message: String = "", alertItems: [AlertItem] = []) {
+        self.title = title
+        self.message = message
+        self.alertItems = alertItems
+    }
+
+    init(error: MyError) {
+        self.title = error.alertTitle
+        self.message = error.alertMessage
+        self.alertItems = []
+    }
 }
 
 struct AlertItem: Identifiable {

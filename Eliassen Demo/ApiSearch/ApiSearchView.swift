@@ -13,32 +13,15 @@ struct ApiSearchView: View {
 
     var body: some View {
         VStack {
-            HStack {
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(Color(.systemGray3))
-
-                    TextField("Search", text: $viewModel.searchText)
-                        .autocorrectionDisabled(true)
-                        .focused($isSearchFieldFocused)
+            SearchBar(searchText: $viewModel.searchText)
+                .onChange(of: viewModel.searchText) { newValue in
+                    print("MyInfo: newValue \(newValue)")
+                    viewModel.searchApis(text: newValue)
                 }
-                .padding(4)
-                .background(Color(.systemGray6))
-                .cornerRadius(10)
-
-                if isSearchFieldFocused {
-                    Text("Cancel")
-                        .foregroundColor(Color(.systemBlue))
-                        .onTapGesture {
-                            isSearchFieldFocused = false
-                        }
-                }
-            }
-            .font(.title3)
 
             List {
-                ForEach(viewModel.searchSuggestions, id: \.self) {
-                    Text($0)
+                ForEach(viewModel.searchSuggestions) {
+                    Text($0.title)
                         .font(.body)
                 }
             }
@@ -47,6 +30,7 @@ struct ApiSearchView: View {
             Spacer()
         }
         .padding(.horizontal, 8)
+        .alert(alertDataSource: viewModel.alertDataSource, isPresented: $viewModel.showAlert)
     }
 }
 

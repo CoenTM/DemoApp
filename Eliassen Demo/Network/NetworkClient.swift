@@ -15,7 +15,7 @@ protocol NetworkClient {
 
 class GlobalNetworkClient: NetworkClient {
     func jsonTask<T>(with config: NetworkRequestConfiguration) async throws -> T where T : Decodable {
-        let urlRequest = try config.urlRequest()
+        let urlRequest = try URLRequest(requestConfig: config)
         return try await withCheckedThrowingContinuation { continuation in
             URLSession.shared.dataTask(with: urlRequest) { [weak self] data, response, error in
                 if self == nil {
