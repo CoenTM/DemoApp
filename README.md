@@ -1,7 +1,7 @@
 # DemoApp
 ## Skills Demonstrated
 - MVVM design pattern
-- Interacts with servers/APIs/URLs
+- Network communication such as API calls
 - Code organization using groups, extension, and nested classes
 - High reusability of code by abstraction
 
