@@ -68,7 +68,7 @@ struct ApiListView: View {
     }
 	
 	struct Row: View {
-		let item: ApiItem
+		let item: ApiItemDTO
 		
 		var body: some View {
             VStack(alignment: .leading, spacing: 0) {

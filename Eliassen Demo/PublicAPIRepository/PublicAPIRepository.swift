@@ -14,13 +14,13 @@ class PublicAPIRepository {
         self.networkClient = networkClient
     }
 
-    public func fetchPublicApis() async throws -> [ApiItem] {
+    public func fetchPublicApis() async throws -> [ApiItemDTO] {
         let config = RequestConfiguration.fetchPublicApis
         let response: Response = try await networkClient.jsonTask(with: config)
         return response.entries ?? []
     }
 
-    public func searchPublicApis(for text: String) async throws -> [ApiItem] {
+    public func searchPublicApis(for text: String) async throws -> [ApiItemDTO] {
         let config = RequestConfiguration.searchPublicApis(text: text)
         let response: Response = try await networkClient.jsonTask(with: config)
         return response.entries ?? []
@@ -60,11 +60,11 @@ extension PublicAPIRepository {
 extension PublicAPIRepository {
     struct Response: Codable {
         var count: Int?
-        var entries: [ApiItem]?
+        var entries: [ApiItemDTO]?
     }
 }
 
-struct ApiItem: Codable, Hashable, Identifiable {
+struct ApiItemDTO: Codable, Hashable, Identifiable {
     var id: String = UUID().uuidString
     var title: String
     var description: String
@@ -86,6 +86,6 @@ struct ApiItem: Codable, Hashable, Identifiable {
 }
 
 
-extension ApiItem {
-    static let example = ApiItem(title: "Get a Cat", description: "This is an api to find a cat in need of help", authType: "Bearer Token", isHttpsRequest: true, cors: "Yes", urlString: "https://getacat.com.apis/", category: "Charity")
+extension ApiItemDTO {
+    static let example = ApiItemDTO(title: "Get a Cat", description: "This is an api to find a cat in need of help", authType: "Bearer Token", isHttpsRequest: true, cors: "Yes", urlString: "https://getacat.com.apis/", category: "Charity")
 }

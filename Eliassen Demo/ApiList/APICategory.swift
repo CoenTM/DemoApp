@@ -10,5 +10,5 @@ import Foundation
 struct APICategory: Identifiable, Hashable {
     let id: String
     let title: String
-    var apiList: [ApiItem]
+    var apiList: [ApiItemDTO]
 }

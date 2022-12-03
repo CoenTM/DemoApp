@@ -67,7 +67,7 @@ extension ApiListView {
             alertDataSource = AlertDataSource(title: "", message: "", alertItems: [])
         }
 		
-		private func getCategories(from apiItems: [ApiItem]) -> [APICategory] {
+		private func getCategories(from apiItems: [ApiItemDTO]) -> [APICategory] {
 			var categories = [APICategory]()
 			
 			for apiItem in apiItems {

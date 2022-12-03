@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ApiDetailView: View {
-	let apiItem: ApiItem
+	let apiItem: ApiItemDTO
 	
     var body: some View {
 		ScrollView {
@@ -59,7 +59,7 @@ struct ApiDetailView: View {
 struct ApiDetailView_Previews: PreviewProvider {
     static var previews: some View {
 		NavigationView {
-			ApiDetailView(apiItem: ApiItem.example)
+			ApiDetailView(apiItem: ApiItemDTO.example)
 		}
     }
 }

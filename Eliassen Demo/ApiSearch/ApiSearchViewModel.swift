@@ -10,13 +10,13 @@ import Foundation
 extension ApiSearchView {
     class ViewModel: ObservableObject {
         @Published var searchText = ""
-        @Published var searchSuggestions: [ApiItem] = []
+        @Published var searchSuggestions: [ApiItemDTO] = []
         @Published var isSearchFieldFocused = false
 
         @Published var showAlert = false
         private (set) var alertDataSource = AlertDataSource()
 
-        private var searchResultCache: [String: [ApiItem]] = [:]
+        private var searchResultCache: [String: [ApiItemDTO]] = [:]
         private let repo = PublicAPIRepository(networkClient: GlobalNetworkClient())
 
         public func searchApis(text: String) {
@@ -55,7 +55,7 @@ extension ApiSearchView {
             }
         }
 
-        private func cacheExists(key: String) -> [ApiItem]? {
+        private func cacheExists(key: String) -> [ApiItemDTO]? {
             return searchResultCache[key]
         }
     }
