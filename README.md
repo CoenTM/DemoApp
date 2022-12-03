@@ -1,5 +1,5 @@
 # DemoApp
-Skills demonstrated are as follows:
+## Skills demonstrated
 - MVVM design pattern
 - Interacts with servers/APIs/URLs
 - Code organization using groups, extension, and so on
