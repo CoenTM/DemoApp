@@ -2,7 +2,7 @@
 ## Skills Demonstrated
 - MVVM design pattern
 - Interacts with servers/APIs/URLs
-- Code organization using groups, extension, and so on
+- Code organization using groups, extension, and nested classes
 - Abstraction and reusability via protocols
 
 
