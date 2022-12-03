@@ -20,9 +20,12 @@ extension ApiSearchView {
         private let repo = PublicAPIRepository(networkClient: GlobalNetworkClient())
 
         public func searchApis(text: String) {
+            if text.isEmpty {
+                searchSuggestions = []
+                return
+            }
             Task {
                 if let cache = cacheExists(key: text) {
-                    print("MyInfo: Cache found")
                     await MainActor.run {
                         if searchText == text {
                             searchSuggestions = cache
@@ -33,7 +36,6 @@ extension ApiSearchView {
 
                 do {
                     let matchingApis = try await repo.searchPublicApis(for: text)
-                    print("MyInfo: count \(matchingApis.count)")
                     searchResultCache[text] = matchingApis
                     await MainActor.run {
                         if searchText == text {
@@ -41,8 +43,6 @@ extension ApiSearchView {
                         }
                     }
                 } catch {
-                    print("MyInfo: \(error)")
-                    print("MyInfo: \(error.localizedDescription)")
                     if let error = error as? MyError, error.displayError == true {
                         alertDataSource = AlertDataSource(error: error)
                         alertDataSource.alertItems = [AlertItem(id: UUID().uuidString, title: "Cancel", role: .cancel)]

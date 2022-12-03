@@ -24,6 +24,15 @@ struct SearchBar: View {
                 TextField("Search", text: $searchText)
                     .autocorrectionDisabled(true)
                     .focused($isSearchFieldFocused)
+                Spacer()
+                if isSearchFieldFocused {
+                    Button {
+                        clearText()
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(Color(.systemGray3))
+                    }
+                }
             }
             .padding(4)
             .background(Color(.systemGray6))
@@ -38,5 +47,9 @@ struct SearchBar: View {
             }
         }
         .font(.title3)
+    }
+
+    private func clearText() {
+        searchText = ""
     }
 }

@@ -15,14 +15,17 @@ struct ApiSearchView: View {
         VStack {
             SearchBar(searchText: $viewModel.searchText)
                 .onChange(of: viewModel.searchText) { newValue in
-                    print("MyInfo: newValue \(newValue)")
                     viewModel.searchApis(text: newValue)
                 }
 
             List {
-                ForEach(viewModel.searchSuggestions) {
-                    Text($0.title)
-                        .font(.body)
+                ForEach(viewModel.searchSuggestions) { apiItem in
+                    NavigationLink {
+                        ApiDetailView(apiItem: apiItem)
+                    } label: {
+                        Text(apiItem.title)
+                            .font(.body)
+                    }
                 }
             }
             .listStyle(.plain)
