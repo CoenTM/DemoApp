@@ -1,10 +1,12 @@
 # DemoApp
-## Skills demonstrated
+## Skills Demonstrated
 - MVVM design pattern
 - Interacts with servers/APIs/URLs
 - Code organization using groups, extension, and so on
 - Abstraction and reusability via protocols
 
+
+## App Features
 This app utilizes a public API to get public APIs.
 
 The main screen lists all the public APIs into sections by category.
