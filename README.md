@@ -1,6 +1,4 @@
 # DemoApp
-Demonstraion of my fundamental Swift development
-
 Skills demonstrated are as follows:
 - MVVM design pattern
 - Interacts with servers/APIs/URLs
