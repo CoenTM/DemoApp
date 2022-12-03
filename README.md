@@ -1,6 +1,11 @@
 # DemoApp
 Demonstraion of my fundamental Swift development
 
+Skills demonstrated are as follows:
+- MVVM design pattern
+- Interacts with servers/APIs/URLs
+- Code organization using groups, extension, and so on
+- Abstraction and reusability via protocols
 
 This app utilizes a public API to get public APIs.
 
