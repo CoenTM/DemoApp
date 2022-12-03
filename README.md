@@ -3,7 +3,7 @@
 - MVVM design pattern
 - Interacts with servers/APIs/URLs
 - Code organization using groups, extension, and nested classes
-- Abstraction and reusability via protocols
+- High reusability of code by abstraction
 
 
 ## App Features
